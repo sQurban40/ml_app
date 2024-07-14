@@ -60,6 +60,7 @@ def main():
             protein2 = st.text_input("% methylation of protein 2","0") 
             protein3 = st.text_input("% methylation of protein 3","0") 
             if st.button("Predict Age"): 
+                st.write(protein1,protein2,protein3)
             
         else:
             st.warning("Please upload a all three Protein data files.")
