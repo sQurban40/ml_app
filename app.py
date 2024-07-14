@@ -55,18 +55,15 @@ def main():
             st.markdown("Combining 3 protein Data", unsafe_allow_html = True)
             st.write(all_data.head())
             #plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
-            st.header("Predictions on test data")
-            protein1 = st.text_input("% methylation of protein 1","0") 
-            protein2 = st.text_input("% methylation of protein 2","0") 
-            protein3 = st.text_input("% methylation of protein 3","0") 
-            if st.button("Predict Age"): 
-                st.write(protein1,protein2,protein3)
             
         else:
             st.warning("Please upload a all three Protein data files.")
-
-
-
+        st.header("Predictions on test data")
+        protein1 = st.text_input("% methylation of protein 1","0") 
+        protein2 = st.text_input("% methylation of protein 2","0") 
+        protein3 = st.text_input("% methylation of protein 3","0") 
+        if st.button("Predict Age"): 
+            st.write(protein1,protein2,protein3)
     #age = st.text_input("Age","0") 
     #workclass = st.selectbox("Working Class", ["Federal-gov","Local-gov","Never-worked","Private","Self-emp-inc","Self-emp-not-inc","State-gov","Without-pay"]) 
     #hours_per_week = st.text_input("Hours per week","0") 
