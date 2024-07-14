@@ -46,11 +46,11 @@ def main():
             
             protein2.rename(columns={'Methylation (%)':'Methylation_prot2'},inplace=True)
             protein2.Age=protein2.Age.round(3)
-            plot_data(protein2['Age'],protein2['Methylation_prot1'],"c")
+            plot_data(protein2['Age'],protein2['Methylation_prot2'],"c")
             
             protein3.rename(columns={'Methylation (%)':'Methylation_prot3'},inplace=True)
             protein3.Age=protein3.Age.round(3)
-            plot_data(protein3['Age'],protein3['Methylation_prot1'],"lightgreen")
+            plot_data(protein3['Age'],protein3['Methylation_prot3'],"lightgreen")
             
             all_data=pd.concat([protein1, protein2,protein3])
             all_data.sort_values(by='Age',inplace=True)
