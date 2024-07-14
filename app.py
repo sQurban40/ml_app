@@ -4,6 +4,7 @@ import pandas as pd
 import streamlit as st 
 import sklearn
 import pickle
+import matplotlib.pyplot as plt
 def plot_data(x,y,clr):
     #data.plot(x=index,y='Methylation_prot1',kind='scatter')
     #st.header("Data Visualization")
