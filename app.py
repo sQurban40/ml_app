@@ -19,20 +19,21 @@ def main():
     Protien2_file = st.file_uploader("Upload Protien2 excel file", type="xlsx", accept_multiple_files=False)
     Protien3_file = st.file_uploader("Upload Protien3 excel file", type="xlsx", accept_multiple_files=False)
     if st.button("Analyze Data"): 
-        Protien1_file
-        protein1 = pd.read_excel(Protien1_file)
-        #st.markdown(protein1.head(), unsafe_allow_html = True)
-        protein2 = pd.read_excel(Protien2_file)
-        protein3 = pd.read_excel(Protien3_file)
-        protein1.rename(columns={'Methylation (%)':'Methylation_prot1'},inplace=True)
-        protein1.Age=protein1.Age.round(3)
-        protein2.rename(columns={'Methylation (%)':'Methylation_prot2'},inplace=True)
-        protein2.Age=protein2.Age.round(3)
-        protein3.rename(columns={'Methylation (%)':'Methylation_prot3'},inplace=True)
-        protein3.Age=protein3.Age.round(3)
-        all_data=pd.concat([protein1, protein2,protein3])
-        all_data.sort_values(by='Age',inplace=True)
-        all_data.head()
+        if Protien1_file and Protien2_file and Protien3_file:
+            protein1 = pd.read_excel(Protien1_file)
+            st.markdown(protein1.head(), unsafe_allow_html = True)
+            protein2 = pd.read_excel(Protien2_file)
+            protein3 = pd.read_excel(Protien3_file)
+            protein1.rename(columns={'Methylation (%)':'Methylation_prot1'},inplace=True)
+            protein1.Age=protein1.Age.round(3)
+            protein2.rename(columns={'Methylation (%)':'Methylation_prot2'},inplace=True)
+            protein2.Age=protein2.Age.round(3)
+            protein3.rename(columns={'Methylation (%)':'Methylation_prot3'},inplace=True)
+            protein3.Age=protein3.Age.round(3)
+            all_data=pd.concat([protein1, protein2,protein3])
+            all_data.sort_values(by='Age',inplace=True)
+            st.markdown(all_data.head(), unsafe_allow_html = True)
+            
 
 
     age = st.text_input("Age","0") 
