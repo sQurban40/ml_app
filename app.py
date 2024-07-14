@@ -84,6 +84,12 @@ def main():
     protein3 = st.text_input("% methylation of protein 3","0") 
     if st.button("Predict Age"): 
         st.write(protein1,protein2,protein3)
+        test_sample=np.array([[int(protein1),int(protein1),int(protein1)]])
+        #test_sample_actual_ages=[[52],[44.7],[61.9],[32.3]]
+        if(len(test_sample)==1):
+            test_sample=test_sample.reshape(-1, 3)
+        predicted_ages=lreg_model.predict(test_sample)
+        st.write("Predicted Age for Given Sample is\n",np.round(predicted_ages,2))
     #age = st.text_input("Age","0") 
     #workclass = st.selectbox("Working Class", ["Federal-gov","Local-gov","Never-worked","Private","Self-emp-inc","Self-emp-not-inc","State-gov","Without-pay"]) 
     #hours_per_week = st.text_input("Hours per week","0") 
