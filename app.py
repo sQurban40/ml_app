@@ -71,7 +71,7 @@ def main():
             st.markdown("Combining 3 protein Data", unsafe_allow_html = True)
             transformed_data=transform_data(all_data)
             st.write(transformed_data.head())
-            lreg_model=model_implementation(data)
+            lreg_model=model_implementation(transformed_data)
             
         else:
             st.warning("Please upload a all three Protein data files.")
