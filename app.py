@@ -28,17 +28,15 @@ def main():
     Protien1_file = st.file_uploader("Upload Protien1 excel file", accept_multiple_files=False)
     if Protien1_file:
         protein1 = pd.read_excel(Protien1_file)
-        st.write(all_data.head())
         st.write(protein1.head())
+        plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
     Protien2_file = st.file_uploader("Upload Protien2 excel file", type="xlsx", accept_multiple_files=False)
     if Protien2_file:
         protein2 = pd.read_excel(Protien2_file)
-        st.write(all_data.head())
         st.write(protein2.head())
     Protien3_file = st.file_uploader("Upload Protien3 excel file", type="xlsx", accept_multiple_files=False)
     if Protien3_file:
         protein3 = pd.read_excel(Protien3_file)
-        st.write(all_data.head())
         st.write(protein3.head())
     if st.button("Analyze Data"): 
         if Protien1_file and Protien2_file and Protien3_file:
@@ -51,7 +49,7 @@ def main():
             all_data=pd.concat([protein1, protein2,protein3])
             all_data.sort_values(by='Age',inplace=True)
             st.write(all_data.head())
-            plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
+            #plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
 
 
 
