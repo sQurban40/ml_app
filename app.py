@@ -16,7 +16,7 @@ def plot_data(x,y,clr):
 def transform_data(data):
     nan = np.nan
     imputer = KNNImputer(n_neighbors=3, weights="uniform")
-    transformed_data=imputer.fit_transform(all_data)
+    transformed_data=imputer.fit_transform(data)
     transformed_data=pd.DataFrame(transformed_data)
     return transformed_data
 def main(): 
