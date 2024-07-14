@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st 
+import sklearn
 import pickle
 def main(): 
     model = pickle.load(open('linear_reg_model.pkl', 'rb'))
