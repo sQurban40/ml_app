@@ -71,10 +71,10 @@ def main():
         st.write(transformed_data.head())
         lreg_model=model_implementation(transformed_data)
         st.header("Predictions on test data")
+        protein1 = st.text_input("% methylation of protein 1","0") 
+        protein2 = st.text_input("% methylation of protein 2","0") 
+        protein3 = st.text_input("% methylation of protein 3","0") 
         if st.button("Predict Age"): 
-           protein1 = st.text_input("% methylation of protein 1","0") 
-           protein2 = st.text_input("% methylation of protein 2","0") 
-           protein3 = st.text_input("% methylation of protein 3","0") 
            #st.write(protein1,protein2,protein3)
            test_sample=[int(protein1),int(protein1),int(protein1)]
            #test_sample_actual_ages=[[52],[44.7],[61.9],[32.3]]
