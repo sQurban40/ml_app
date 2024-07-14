@@ -19,6 +19,15 @@ def transform_data(data):
     transformed_data=imputer.fit_transform(data)
     transformed_data=pd.DataFrame(transformed_data)
     return transformed_data
+def model_implementation(data):
+    target=transformed_data.iloc[:,0:1].values
+    features=transformed_data.iloc[:,1:]
+    X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.30, random_state=42)
+    lreg_model = linear_model.LinearRegression()
+    lreg_model.fit(X_train,y_train)
+    y_pred_train=lreg_model.predict(X_train)
+    y_pred_test=lreg_model.predict(X_test)
+    return lreg_model
 def main(): 
     model = pickle.load(open('linear_reg_model.pkl', 'rb'))
     #st.title("Patient Age Predictor")
@@ -62,6 +71,7 @@ def main():
             st.markdown("Combining 3 protein Data", unsafe_allow_html = True)
             transformed_data=transform_data(all_data)
             st.write(transformed_data.head())
+            lreg_model=model_implementation(data)
             
         else:
             st.warning("Please upload a all three Protein data files.")
