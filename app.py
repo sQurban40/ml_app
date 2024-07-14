@@ -10,7 +10,7 @@ def plot_data(x,y,clr):
     #st.header("Data Visualization")
     #st.write(f"Protein {i+1} Data Distribution")
     fig, ax = plt.subplots()
-    plt.scatter(x, y, color=clr,label=y.name,ax=ax)
+    plt.scatter(x, y, color=clr,label=y.name)
     plt.title(f'Age vs {y.name}')
     plt.xlabel('Age')
     plt.ylabel(y.name)
