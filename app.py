@@ -12,7 +12,7 @@ def main():
     <h2 style="color:white;text-align:center;">Patient Age Predictor App </h2>
     </div>
     """
-    st.title("Protein Levels and Age Prediction")
+    
     st.header("Upload Protein Data")
     uploaded_files = st.file_uploader("Choose Excel files for Protein 1, Protein 2, and Protein 3", accept_multiple_files=True, type='xlsx')
     if len(uploaded_files) == 3:
