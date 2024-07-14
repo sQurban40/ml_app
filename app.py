@@ -6,9 +6,7 @@ import sklearn
 import pickle
 import matplotlib.pyplot as plt
 def plot_data(x,y,clr):
-    #data.plot(x=index,y='Methylation_prot1',kind='scatter')
-    #st.header("Data Visualization")
-    #st.write(f"Protein {i+1} Data Distribution")
+    st.header("Data Visualization")
     fig, ax = plt.subplots()
     plt.scatter(x, y, color=clr,label=y.name)
     plt.title(f'Age vs {y.name}')
@@ -54,6 +52,7 @@ def main():
             
             all_data=pd.concat([protein1, protein2,protein3])
             all_data.sort_values(by='Age',inplace=True)
+            st.markdown("Combining 3 protien Data", unsafe_allow_html = True)
             st.write(all_data.head())
             #plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
 
