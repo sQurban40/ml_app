@@ -15,10 +15,6 @@ def main():
     st.markdown(html_temp, unsafe_allow_html = True)
     
     st.header("Upload Protein Data")
-    uploaded_files = st.file_uploader("Choose Excel files for Protein 1, Protein 2, and Protein 3", accept_multiple_files=True, type='xlsx')
-    #if len(uploaded_files) == 3:
-    #    dfs = [pd.read_excel(file) for file in uploaded_files]
-    
     Protien1_file = st.file_uploader("Upload Protien1 excel file", accept_multiple_files=False)
     Protien2_file = st.file_uploader("Upload Protien2 excel file", type="xlsx", accept_multiple_files=False)
     Protien3_file = st.file_uploader("Upload Protien3 excel file", type="xlsx", accept_multiple_files=False)
@@ -26,17 +22,17 @@ def main():
         Protien1_file
         protein1 = pd.read_excel(Protien1_file)
         #st.markdown(protein1.head(), unsafe_allow_html = True)
-        #protein2 = pd.read_excel('Methylation vs Age Protein 2 FHL2 CG066399320.xlsx')
-        #protein3 = pd.read_excel('Methylation vs Age Protein 3 PENK CG16419235.xlsx')
-        #protein1.rename(columns={'Methylation (%)':'Methylation_prot1'},inplace=True)
-        #protein1.Age=protein1.Age.round(3)
-        #protein2.rename(columns={'Methylation (%)':'Methylation_prot2'},inplace=True)
-        #protein2.Age=protein2.Age.round(3)
-        #protein3.rename(columns={'Methylation (%)':'Methylation_prot3'},inplace=True)
-        #protein3.Age=protein3.Age.round(3)
-        #all_data=pd.concat([protein1, protein2,protein3])
-        #all_data.sort_values(by='Age',inplace=True)
-        #all_data.head()
+        protein2 = pd.read_excel(Protien2_file)
+        protein3 = pd.read_excel(Protien3_file)
+        protein1.rename(columns={'Methylation (%)':'Methylation_prot1'},inplace=True)
+        protein1.Age=protein1.Age.round(3)
+        protein2.rename(columns={'Methylation (%)':'Methylation_prot2'},inplace=True)
+        protein2.Age=protein2.Age.round(3)
+        protein3.rename(columns={'Methylation (%)':'Methylation_prot3'},inplace=True)
+        protein3.Age=protein3.Age.round(3)
+        all_data=pd.concat([protein1, protein2,protein3])
+        all_data.sort_values(by='Age',inplace=True)
+        all_data.head()
 
 
     age = st.text_input("Age","0") 
