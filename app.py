@@ -2,10 +2,13 @@
 import numpy as np
 import pandas as pd
 import streamlit as st 
-import sklearn
 import pickle
 import matplotlib.pyplot as plt
 from sklearn.impute import KNNImputer
+from sklearn.model_selection import train_test_split
+from sklearn import linear_model
+from sklearn.metrics import mean_squared_error
+
 def plot_data(x,y,clr):
     fig, ax = plt.subplots()
     plt.scatter(x, y, color=clr,label=y.name)
