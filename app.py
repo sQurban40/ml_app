@@ -76,7 +76,7 @@ def main():
         protein3 = st.text_input("% methylation of protein 3","0") 
         if st.button("Predict Age"): 
            #st.write(protein1,protein2,protein3)
-           test_sample=np.array([[int(protein1),int(protein1),int(protein1)]])
+           test_sample=np.array([[int(protein1),int(protein2),int(protein3)]])
            #test_sample_actual_ages=[[52],[44.7],[61.9],[32.3]]
            if(len(test_sample)==1):
               test_sample=test_sample.reshape(-1, 3)
