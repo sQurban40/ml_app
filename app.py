@@ -21,7 +21,7 @@ def main():
     if st.button("Analyze Data"): 
         if Protien1_file and Protien2_file and Protien3_file:
             protein1 = pd.read_excel(Protien1_file)
-            print(protein1.head())
+            st.write(protein1.head())
             protein2 = pd.read_excel(Protien2_file)
             protein3 = pd.read_excel(Protien3_file)
             protein1.rename(columns={'Methylation (%)':'Methylation_prot1'},inplace=True)
@@ -32,7 +32,7 @@ def main():
             protein3.Age=protein3.Age.round(3)
             all_data=pd.concat([protein1, protein2,protein3])
             all_data.sort_values(by='Age',inplace=True)
-            print(all_data.head())
+            st.write(all_data.head())
             
 
 
