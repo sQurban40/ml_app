@@ -5,6 +5,7 @@ import streamlit as st
 import sklearn
 import pickle
 import matplotlib.pyplot as plt
+from sklearn.impute import KNNImputer
 def plot_data(x,y,clr):
     fig, ax = plt.subplots()
     plt.scatter(x, y, color=clr,label=y.name)
@@ -12,6 +13,12 @@ def plot_data(x,y,clr):
     plt.xlabel('Age')
     plt.ylabel(y.name)
     st.pyplot(fig)
+def transform_data(data):
+    nan = np.nan
+    imputer = KNNImputer(n_neighbors=3, weights="uniform")
+    transformed_data=imputer.fit_transform(all_data)
+    transformed_data=pd.DataFrame(transformed_data)
+    return transformed_data
 def main(): 
     model = pickle.load(open('linear_reg_model.pkl', 'rb'))
     #st.title("Patient Age Predictor")
@@ -53,8 +60,8 @@ def main():
             all_data=pd.concat([protein1, protein2,protein3])
             all_data.sort_values(by='Age',inplace=True)
             st.markdown("Combining 3 protein Data", unsafe_allow_html = True)
-            st.write(all_data.head())
-            #plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
+            transformed_data=transform_data(all_data)
+            st.write(transformed_data.head())
             
         else:
             st.warning("Please upload a all three Protein data files.")
