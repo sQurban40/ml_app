@@ -7,7 +7,7 @@ import pickle
 def plot_data(x,y,clr):
     #data.plot(x=index,y='Methylation_prot1',kind='scatter')
     #st.header("Data Visualization")
-    st.write(f"Protein {i+1} Data Distribution")
+    #st.write(f"Protein {i+1} Data Distribution")
     fig, ax = plt.subplots()
     plt.scatter(x, y, color=clr,label=y.name,ax=ax)
     plt.title(f'Age vs {y.name}')
