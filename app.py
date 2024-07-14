@@ -43,54 +43,45 @@ def main():
     
     st.header("Upload Protein Data")
     Protien1_file = st.file_uploader("Upload Protien1 excel file", accept_multiple_files=False)
-    if Protien1_file:
-        protein1 = pd.read_excel(Protien1_file)
-        st.write(protein1.head())
     Protien2_file = st.file_uploader("Upload Protien2 excel file", type="xlsx", accept_multiple_files=False)
-    if Protien2_file:
+    Protien3_file = st.file_uploader("Upload Protien3 excel file", type="xlsx", accept_multiple_files=False)
+    if Protien1_file and Protien2_file and Protien3_file:
         protein2 = pd.read_excel(Protien2_file)
         st.write(protein2.head())
-    Protien3_file = st.file_uploader("Upload Protien3 excel file", type="xlsx", accept_multiple_files=False)
-    if Protien3_file:
+        protein1 = pd.read_excel(Protien1_file)
+        st.write(protein1.head())
         protein3 = pd.read_excel(Protien3_file)
         st.write(protein3.head())
-    if st.button("Analyze Data"): 
-        if Protien1_file and Protien2_file and Protien3_file:
+        protein1.rename(columns={'Methylation (%)':'Methylation_prot1'},inplace=True)
+        protein1.Age=protein1.Age.round(3)
+        protein2.rename(columns={'Methylation (%)':'Methylation_prot2'},inplace=True)
+        protein2.Age=protein2.Age.round(3)
+        protein3.rename(columns={'Methylation (%)':'Methylation_prot3'},inplace=True)
+        protein3.Age=protein3.Age.round(3)
+        if st.button("Analyze Data"): 
             st.header("Data Visualization")
-            protein1.rename(columns={'Methylation (%)':'Methylation_prot1'},inplace=True)
-            protein1.Age=protein1.Age.round(3)
             plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
-            
-            protein2.rename(columns={'Methylation (%)':'Methylation_prot2'},inplace=True)
-            protein2.Age=protein2.Age.round(3)
             plot_data(protein2['Age'],protein2['Methylation_prot2'],"c")
-            
-            protein3.rename(columns={'Methylation (%)':'Methylation_prot3'},inplace=True)
-            protein3.Age=protein3.Age.round(3)
             plot_data(protein3['Age'],protein3['Methylation_prot3'],"lightgreen")
             
-            all_data=pd.concat([protein1, protein2,protein3])
-            all_data.sort_values(by='Age',inplace=True)
-            st.markdown("Combining 3 protein Data", unsafe_allow_html = True)
-            transformed_data=transform_data(all_data)
-            st.write(transformed_data.head())
-            
-            
-        else:
-            st.warning("Please upload a all three Protein data files.")
-    st.header("Predictions on test data")
-    protein1 = st.text_input("% methylation of protein 1","0") 
-    protein2 = st.text_input("% methylation of protein 2","0") 
-    protein3 = st.text_input("% methylation of protein 3","0") 
-    if st.button("Predict Age"): 
+        all_data=pd.concat([protein1, protein2,protein3])
+        #all_data.sort_values(by='Age',inplace=True)
+        st.markdown("Combining 3 protein Data", unsafe_allow_html = True)
+        transformed_data=transform_data(all_data)
+        st.write(transformed_data.head())
         lreg_model=model_implementation(transformed_data)
-        st.write(protein1,protein2,protein3)
-        test_sample=[int(protein1),int(protein1),int(protein1)]
-        #test_sample_actual_ages=[[52],[44.7],[61.9],[32.3]]
-        if(len(test_sample)==1):
-            test_sample=test_sample.reshape(-1, 3)
-        predicted_ages=lreg_model.predict(test_sample)
-        st.write("Predicted Age for Given Sample is\n",np.round(predicted_ages,2))
+        st.header("Predictions on test data")
+        if st.button("Predict Age"): 
+           protein1 = st.text_input("% methylation of protein 1","0") 
+           protein2 = st.text_input("% methylation of protein 2","0") 
+           protein3 = st.text_input("% methylation of protein 3","0") 
+           #st.write(protein1,protein2,protein3)
+           test_sample=[int(protein1),int(protein1),int(protein1)]
+           #test_sample_actual_ages=[[52],[44.7],[61.9],[32.3]]
+           if(len(test_sample)==1):
+              test_sample=test_sample.reshape(-1, 3)
+            predicted_ages=lreg_model.predict(test_sample)
+            st.write("Predicted Age for Given Sample is\n",np.round(predicted_ages,2))
     #age = st.text_input("Age","0") 
     #workclass = st.selectbox("Working Class", ["Federal-gov","Local-gov","Never-worked","Private","Self-emp-inc","Self-emp-not-inc","State-gov","Without-pay"]) 
     #hours_per_week = st.text_input("Hours per week","0") 
@@ -101,7 +92,9 @@ def main():
     #     data = {'age': int(age), 'workclass': workclass, 'education': education, 'maritalstatus': marital_status, 'occupation': occupation, 'relationship': relationship, 'race': race, 'gender': gender, 'capitalgain': int(capital_gain), 'capitalloss': int(capital_loss), 'hoursperweek': int(hours_per_week), 'nativecountry': nativecountry}
     #    print(data)
     #    df=pd.DataFrame([list(data.values())], columns=['age','workclass','education','maritalstatus','occupation','relationship','race','gender','capitalgain','capitalloss','hoursperweek','nativecountry'])
-                
+    
+    else:
+        st.warning("Please upload a all three Protein data files.")            
       
 if __name__=='__main__': 
     main()
