@@ -6,7 +6,7 @@ import sklearn
 import pickle
 def main(): 
     model = pickle.load(open('linear_reg_model.pkl', 'rb'))
-    st.title("Income Predictor")
+    st.title("Patient Age Predictor")
     html_temp = """
     <div style="background:#025246 ;padding:10px">
     <h2 style="color:white;text-align:center;">Income Prediction App </h2>
