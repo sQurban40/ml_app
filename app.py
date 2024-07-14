@@ -18,7 +18,7 @@ def main():
     Protien3_file = st.file_uploader("Upload Protien3 excel file", type="xlsx", accept_multiple_files=False)
     if st.button("Analyze Data"): 
         Protien1_file
-        #protein1 = pd.read_excel(Protien1_file)
+        protein1 = pd.read_excel(Protien1_file)
         #st.markdown(protein1.head(), unsafe_allow_html = True)
         #protein2 = pd.read_excel('Methylation vs Age Protein 2 FHL2 CG066399320.xlsx')
         #protein3 = pd.read_excel('Methylation vs Age Protein 3 PENK CG16419235.xlsx')
