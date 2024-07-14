@@ -3,3 +3,4 @@ scipy>=0.15.1
 matplotlib>=1.4.3
 pandas>=0.19
 scikit-learn>=1.0.2
+xlrd>=1.2.0 
