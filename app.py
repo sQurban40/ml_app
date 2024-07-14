@@ -14,7 +14,7 @@ def plot_data(x,y,clr):
     st.pyplot(fig)
 def main(): 
     model = pickle.load(open('linear_reg_model.pkl', 'rb'))
-    st.title("Patient Age Predictor")
+    #st.title("Patient Age Predictor")
     html_temp = """
     <div style="background:#025246 ;padding:10px">
     <h2 style="color:white;text-align:center;">Patient Age Predictor App </h2>
@@ -55,16 +55,21 @@ def main():
             st.markdown("Combining 3 protein Data", unsafe_allow_html = True)
             st.write(all_data.head())
             #plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
+            st.header("Predictions on test data")
+            protein1 = st.text_input("% methylation of protein 1","0") 
+            protein2 = st.text_input("% methylation of protein 2","0") 
+            protein3 = st.text_input("% methylation of protein 3","0") 
+            if st.button("Predict Age"): 
+            
         else:
             st.warning("Please upload a all three Protein data files.")
 
 
 
-    age = st.text_input("Age","0") 
-    workclass = st.selectbox("Working Class", ["Federal-gov","Local-gov","Never-worked","Private","Self-emp-inc","Self-emp-not-inc","State-gov","Without-pay"]) 
-    
-    hours_per_week = st.text_input("Hours per week","0") 
-    nativecountry = st.selectbox("Native Country",["Cambodia","Canada","China","Columbia","Cuba","Dominican Republic","Ecuador","El Salvadorr","England","France","Germany","Greece","Guatemala","Haiti","Netherlands","Honduras","HongKong","Hungary","India","Iran","Ireland","Italy","Jamaica","Japan","Laos","Mexico","Nicaragua","Outlying-US(Guam-USVI-etc)","Peru","Philippines","Poland","Portugal","Puerto-Rico","Scotland","South","Taiwan","Thailand","Trinadad&Tobago","United States","Vietnam","Yugoslavia"]) 
+    #age = st.text_input("Age","0") 
+    #workclass = st.selectbox("Working Class", ["Federal-gov","Local-gov","Never-worked","Private","Self-emp-inc","Self-emp-not-inc","State-gov","Without-pay"]) 
+    #hours_per_week = st.text_input("Hours per week","0") 
+    #nativecountry = st.selectbox("Native Country",["Cambodia","Canada","China","Columbia","Cuba","Dominican Republic","Ecuador","El Salvadorr","England","France","Germany","Greece","Guatemala","Haiti","Netherlands","Honduras","HongKong","Hungary","India","Iran","Ireland","Italy","Jamaica","Japan","Laos","Mexico","Nicaragua","Outlying-US(Guam-USVI-etc)","Peru","Philippines","Poland","Portugal","Puerto-Rico","Scotland","South","Taiwan","Thailand","Trinadad&Tobago","United States","Vietnam","Yugoslavia"]) 
     
     if st.button("Predict"): 
         features = [[age,workclass,education,marital_status,occupation,relationship,race,gender,capital_gain,capital_loss,hours_per_week,nativecountry]]
