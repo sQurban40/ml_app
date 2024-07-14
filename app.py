@@ -4,6 +4,14 @@ import pandas as pd
 import streamlit as st 
 import sklearn
 import pickle
+def plot_data(x,y,clr):
+    #data.plot(x=index,y='Methylation_prot1',kind='scatter')
+    plt.scatter(x, y, color=clr,label=y.name)
+    plt.title(f'Age vs {y.name}')
+    plt.xlabel('Age')
+    plt.ylabel(y.name)
+    plt.legend()
+    plt.show()
 def main(): 
     model = pickle.load(open('linear_reg_model.pkl', 'rb'))
     st.title("Patient Age Predictor")
@@ -16,14 +24,22 @@ def main():
     
     st.header("Upload Protein Data")
     Protien1_file = st.file_uploader("Upload Protien1 excel file", accept_multiple_files=False)
+    if Protien1_file:
+        protein1 = pd.read_excel(Protien1_file)
+        st.write(all_data.head())
+        st.write(protein1.head())
     Protien2_file = st.file_uploader("Upload Protien2 excel file", type="xlsx", accept_multiple_files=False)
+    if Protien2_file:
+        protein2 = pd.read_excel(Protien2_file)
+        st.write(all_data.head())
+        st.write(protein2.head())
     Protien3_file = st.file_uploader("Upload Protien3 excel file", type="xlsx", accept_multiple_files=False)
+    if Protien3_file:
+        protein3 = pd.read_excel(Protien3_file)
+        st.write(all_data.head())
+        st.write(protein3.head())
     if st.button("Analyze Data"): 
         if Protien1_file and Protien2_file and Protien3_file:
-            protein1 = pd.read_excel(Protien1_file)
-            st.write(protein1.head())
-            protein2 = pd.read_excel(Protien2_file)
-            protein3 = pd.read_excel(Protien3_file)
             protein1.rename(columns={'Methylation (%)':'Methylation_prot1'},inplace=True)
             protein1.Age=protein1.Age.round(3)
             protein2.rename(columns={'Methylation (%)':'Methylation_prot2'},inplace=True)
@@ -33,19 +49,13 @@ def main():
             all_data=pd.concat([protein1, protein2,protein3])
             all_data.sort_values(by='Age',inplace=True)
             st.write(all_data.head())
-            
+            plot_data(protein1['Age'],protein1['Methylation_prot1'],"lightblue")
+
 
 
     age = st.text_input("Age","0") 
     workclass = st.selectbox("Working Class", ["Federal-gov","Local-gov","Never-worked","Private","Self-emp-inc","Self-emp-not-inc","State-gov","Without-pay"]) 
-    education = st.selectbox("Education",["10th","11th","12th","1st-4th","5th-6th","7th-8th","9th","Assoc-acdm","Assoc-voc","Bachelors","Doctorate","HS-grad","Masters","Preschool","Prof-school","Some-college"]) 
-    marital_status = st.selectbox("Marital Status",["Divorced","Married-AF-spouse","Married-civ-spouse","Married-spouse-absent","Never-married","Separated","Widowed"]) 
-    occupation = st.selectbox("Occupation",["Adm-clerical","Armed-Forces","Craft-repair","Exec-managerial","Farming-fishing","Handlers-cleaners","Machine-op-inspct","Other-service","Priv-house-serv","Prof-specialty","Protective-serv","Sales","Tech-support","Transport-moving"]) 
-    relationship = st.selectbox("Relationship",["Husband","Not-in-family","Other-relative","Own-child","Unmarried","Wife"]) 
-    race = st.selectbox("Race",["Amer Indian Eskimo","Asian Pac Islander","Black","Other","White"]) 
-    gender = st.selectbox("Gender",["Female","Male"]) 
-    capital_gain = st.text_input("Capital Gain","0") 
-    capital_loss = st.text_input("Capital Loss","0") 
+    
     hours_per_week = st.text_input("Hours per week","0") 
     nativecountry = st.selectbox("Native Country",["Cambodia","Canada","China","Columbia","Cuba","Dominican Republic","Ecuador","El Salvadorr","England","France","Germany","Greece","Guatemala","Haiti","Netherlands","Honduras","HongKong","Hungary","India","Iran","Ireland","Italy","Jamaica","Japan","Laos","Mexico","Nicaragua","Outlying-US(Guam-USVI-etc)","Peru","Philippines","Poland","Portugal","Puerto-Rico","Scotland","South","Taiwan","Thailand","Trinadad&Tobago","United States","Vietnam","Yugoslavia"]) 
     
