@@ -12,6 +12,12 @@ def main():
     <h2 style="color:white;text-align:center;">Patient Age Predictor App </h2>
     </div>
     """
+    st.title("Protein Levels and Age Prediction")
+    st.header("Upload Protein Data")
+    uploaded_files = st.file_uploader("Choose Excel files for Protein 1, Protein 2, and Protein 3", accept_multiple_files=True, type='xlsx')
+    if len(uploaded_files) == 3:
+        dfs = [pd.read_excel(file) for file in uploaded_files]
+    
     st.markdown(html_temp, unsafe_allow_html = True)
     Protien1_file = st.file_uploader("Upload Protien1 excel file", accept_multiple_files=False)
     Protien2_file = st.file_uploader("Upload Protien2 excel file", type="xlsx", accept_multiple_files=False)
