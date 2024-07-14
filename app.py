@@ -20,8 +20,8 @@ def transform_data(data):
     transformed_data=pd.DataFrame(transformed_data)
     return transformed_data
 def model_implementation(data):
-    target=transformed_data.iloc[:,0:1].values
-    features=transformed_data.iloc[:,1:]
+    target=data.iloc[:,0:1].values
+    features=data.iloc[:,1:]
     X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.30, random_state=42)
     lreg_model = linear_model.LinearRegression()
     lreg_model.fit(X_train,y_train)
