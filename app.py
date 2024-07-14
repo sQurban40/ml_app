@@ -6,12 +6,14 @@ import sklearn
 import pickle
 def plot_data(x,y,clr):
     #data.plot(x=index,y='Methylation_prot1',kind='scatter')
-    plt.scatter(x, y, color=clr,label=y.name)
+    #st.header("Data Visualization")
+    st.write(f"Protein {i+1} Data Distribution")
+    fig, ax = plt.subplots()
+    plt.scatter(x, y, color=clr,label=y.name,ax=ax)
     plt.title(f'Age vs {y.name}')
     plt.xlabel('Age')
     plt.ylabel(y.name)
-    plt.legend()
-    plt.show()
+    st.pyplot(fig)
 def main(): 
     model = pickle.load(open('linear_reg_model.pkl', 'rb'))
     st.title("Patient Age Predictor")
