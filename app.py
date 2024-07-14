@@ -13,7 +13,7 @@ def main():
     </div>
     """
     st.markdown(html_temp, unsafe_allow_html = True)
-    Protien1_file = st.file_uploader("Upload Protien1 excel file", type="xlsx", accept_multiple_files=False)
+    Protien1_file = st.file_uploader("Upload Protien1 excel file", accept_multiple_files=False)
     Protien2_file = st.file_uploader("Upload Protien2 excel file", type="xlsx", accept_multiple_files=False)
     Protien3_file = st.file_uploader("Upload Protien3 excel file", type="xlsx", accept_multiple_files=False)
     if st.button("Analyze Data"): 
