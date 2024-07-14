@@ -74,7 +74,7 @@ def main():
             st.markdown("Combining 3 protein Data", unsafe_allow_html = True)
             transformed_data=transform_data(all_data)
             st.write(transformed_data.head())
-            lreg_model=model_implementation(transformed_data)
+            
             
         else:
             st.warning("Please upload a all three Protein data files.")
@@ -83,6 +83,7 @@ def main():
     protein2 = st.text_input("% methylation of protein 2","0") 
     protein3 = st.text_input("% methylation of protein 3","0") 
     if st.button("Predict Age"): 
+        lreg_model=model_implementation(transformed_data)
         st.write(protein1,protein2,protein3)
         test_sample=[int(protein1),int(protein1),int(protein1)]
         #test_sample_actual_ages=[[52],[44.7],[61.9],[32.3]]
